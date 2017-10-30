@@ -18,13 +18,13 @@ func main() {
 	for _, filename := range filenames {
 		in, err := ioutil.ReadFile(filename)
 		if err != nil {
-			fmt.Printf("Unable to open %s with error %s", filename, err)
+			fmt.Printf("Unable to open %s with error %s\n", filename, err)
 			continue
 		}
 
-		out, err := os.Create(filename + ".based64.json")
+		out, err := os.Create(filename + ".json")
 		if err != nil {
-			fmt.Printf("Unable to create %s with error %s", filename+".based64.json", err)
+			fmt.Printf("Unable to create %s with error %s\n", filename+".json", err)
 			continue
 		}
 		defer out.Close()
@@ -39,7 +39,7 @@ func main() {
 
 		_, err = io.Copy(out, strings.NewReader(result))
 		if err != nil {
-			fmt.Printf("Unable to convert: %s!", err)
+			fmt.Printf("Unable to convert: %s!\n", err)
 		}
 	}
 }
