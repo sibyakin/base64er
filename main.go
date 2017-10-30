@@ -36,9 +36,9 @@ func main() {
 
 		writer := base64.NewEncoder(base64.StdEncoding, buf)
 		writer.Write(in)
-		defer writer.Close()
+		writer.Close()
 
-		result := "{ \"name\": " + filename + ", \"image64\": " + buf.String() + "\" }"
+		result := "{ \"name\": \"" + filename + "\", \"image64\": \"" + buf.String() + "\" }\n"
 
 		_, err = io.Copy(out, strings.NewReader(result))
 		if err != nil {
