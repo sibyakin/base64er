@@ -4,8 +4,10 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -35,7 +37,10 @@ func main() {
 
 		result := "{ \"name\": " + filename + ", \"image64\": " + buf.String() + "\" }"
 
-		fmt.Printf(result + "\n")
+		_, err = io.Copy(out, strings.NewReader(result))
+		if err != nil {
+			fmt.Printf("Unable to convert: %s!", err)
+		}
 	}
 }
 
