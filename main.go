@@ -22,6 +22,9 @@ func main() {
 			continue
 		}
 
+		tokens := strings.Split(filename, "/")
+		filename = tokens[len(tokens)-1]
+
 		out, err := os.Create(filename + ".json")
 		if err != nil {
 			fmt.Printf("Unable to create %s with error %s\n", filename+".json", err)
@@ -45,6 +48,6 @@ func main() {
 }
 
 func usage() {
-	fmt.Printf("usage: %s [inputfile]\n", os.Args[0])
+	fmt.Printf("usage: %s [inputfile(s)]\n", os.Args[0])
 	os.Exit(2)
 }
